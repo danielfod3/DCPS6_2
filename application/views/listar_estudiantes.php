@@ -26,9 +26,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         for ($i=0; $i < $cantidad ; $i++) {
           $nueva = ${"estudiante".($i+1)} ;?>
           <tr>
-             <td><center><?= $estudiante[$i]->id?></center></td>
-             <td><center><?= $estudiante[$i]->nombre?></center></td>
-             <td><center><?= $estudiante[$i]->edad?></center></td>
+             <td><center><?= $nueva->id?></center></td>
+             <td><center><?= $nueva->nombre?></center></td>
+             <td><center><?= $nueva->edad?></center></td>
           </tr>
         <?php  } ?>
     </table>

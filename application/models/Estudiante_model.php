@@ -40,7 +40,7 @@ class Estudiante_model extends CI_Model {
 		$data = [
 			'id' => $this->id,
 			'nombre' => $this->nombre,
-			'sexo' => $this->sexo,
+			'edad' => $this->edad,
 		];
 
 		return $this->db->insert('estudiante', $data);
