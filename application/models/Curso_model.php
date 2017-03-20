@@ -7,6 +7,7 @@ class Curso_model extends CI_Model {
 	private $nombre;
 	private $facultad;
 
+
 	public function __construct($value = null) {
 		parent::__construct();
 		$this->load->database();
@@ -18,7 +19,7 @@ class Curso_model extends CI_Model {
 			if (is_object($value)) {
 				$this->id = isset($value->id)? $value->id : null;
 				$this->nombre = isset($value->nombre)? $value->nombre : null;
-				$this->facultad = isset($value->facultada)? $value->facultad : null;
+				$this->facultad = isset($value->facultad)? $value->facultad : null;
 			}
 		}
 	}
@@ -41,15 +42,8 @@ class Curso_model extends CI_Model {
 			'nombre' => $this->nombre,
 			'facultad' => $this->facultad,
 		];
-		return $this->db->insert('curso', $data);
-	}
 
-        if($this->db->insert('finca', $data) != FALSE){
-            $this->id = $this->db->insert_id();
-            return TRUE;
-        }else{
-            return FALSE;
-        }
+		return $this->db->insert('curso', $data);
 	}
 
 	public function obtener_todas() {

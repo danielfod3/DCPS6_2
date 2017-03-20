@@ -13,11 +13,10 @@ CREATE TABLE estudiante (
 ) ENGINE = InnoDB;
 
 CREATE TABLE matricula(
-	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	nota_final FLOAT(20) NOT NULL,
 	id_curso INT UNSIGNED NOT NULL,
 	id_estudiante INT UNSIGNED NOT NULL,
-	PRIMARY KEY (id,id_curso,id_estudiante),
+	PRIMARY KEY (id_curso,id_estudiante),
 	CONSTRAINT est_curso FOREIGN KEY (id_curso) REFERENCES curso (id),
 	CONSTRAINT est_estud FOREIGN KEY (id_estudiante) REFERENCES estudiante (id)
 ) ENGINE = InnoDB;
