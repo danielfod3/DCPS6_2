@@ -69,4 +69,24 @@ class Estudiante_model extends CI_Model {
 			return $this;
 		}
 	}
+
+	public function buscar_estudiante() {
+		$this->db->select('nombre')
+		     ->from('estudiante')
+			 ->where('id', $this->id);
+
+		$res = count($this->db->get()->result());
+		return $res;
+	}
+
+	public function obtener_especifico($edad_minima) {
+
+		$res1 = [];
+		$query = $this->db->get_where('estudiante', array('edad >=' => $edad_minima));
+
+		foreach ($query->result() as $key=>$estudiante) {
+			$res1[$key] = new Estudiante_model($estudiante);
+		}
+		return $res1;
+	}
 }

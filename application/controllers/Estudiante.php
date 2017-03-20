@@ -54,20 +54,51 @@ class Estudiante extends CI_Controller {
      
   }
 
-  function listar(){
+  function listar($bot = NULL){
+      $this->load->model('Estudiante_model');
 
-     $this->load->model('Estudiante_model');
-     $resultado = $this->Estudiante_model->obtener_todas();
+      if ($bot != NULL){
+          $this->form_validation->set_rules('edad', 'edad', 'required');
+       
+          if ($this->form_validation->run() == FALSE){
 
-     $cantidad_estudiantes = count($resultado);
-     for ($i=0; $i <  $cantidad_estudiantes; $i++) { 
-       	$indice = "estudiante".($i+1);
-      	$result[$indice] =  $resultado[$i];
-     }
+              $resultado = $this->Estudiante_model->obtener_todas();
 
-    $result['cantidad'] = $cantidad_estudiantes;
-     $this->load->view('listar_estudiantes',$result);
+              $cantidad_estudiantes = count($resultado);
+              for ($i=0; $i <  $cantidad_estudiantes; $i++) { 
+       	          $indice = "estudiante".($i+1);
+      	          $result[$indice] =  $resultado[$i];
+              }
 
+              $result['cantidad'] = $cantidad_estudiantes;
+              $this->load->view('listar_estudiantes',$result);
 
+           }else{
+
+              $edad_minima = $this->input->post('edad');
+              $estudiante = new Estudiante_model();
+              $resultado = $estudiante->obtener_especifico($edad_minima);
+              $cantidad_estudiantes = count($resultado);
+              for ($i=0; $i <  $cantidad_estudiantes; $i++) { 
+       	         $indice = "estudiante".($i+1);
+      	         $result[$indice] =  $resultado[$i];
+              }
+
+          $result['cantidad'] = $cantidad_estudiantes;
+          $this->load->view('listar_estudiantes',$result);
+           }
+
+      }else{
+          $resultado = $this->Estudiante_model->obtener_todas();
+
+          $cantidad_estudiantes = count($resultado);
+          for ($i=0; $i <  $cantidad_estudiantes; $i++) { 
+       	      $indice = "estudiante".($i+1);
+      	      $result[$indice] =  $resultado[$i];
+          }
+
+          $result['cantidad'] = $cantidad_estudiantes;
+          $this->load->view('listar_estudiantes',$result);
+        }
   }
 }

@@ -8,6 +8,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title>Listar Estudiantes</title>
   </head>
   <body>
+  <?= validation_errors(); ?>
+    <?= form_open("Estudiante/listar/bot")?>
+
+    <label for="edad">Edad mínima</label>
+    <input type="input" name="edad"/><br />
+
+    <input type="submit" name="registrar" value="Registrar" />
+
+  <?= form_close()?>
     <table>
       <tr>
         <tr>
