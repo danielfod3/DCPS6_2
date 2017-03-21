@@ -67,6 +67,27 @@ class Curso_model extends CI_Model {
 			$this->nombre = $result[0]->nombre;
 			$this->facultad = $result[0]->facultad;
 			return $this;
-		}
+		}	
 	}
+
+	public function obtener_curso($id) {
+
+        $query = $this->db->get_where('curso', array('id' => $id));
+        return $query->row_array();
+	}
+
+
+	public function actualizar() {
+		$data = [
+			'id' => $this->id,
+			'nombre' => $this->nombre,
+			'facultad' => $this->facultad
+		];
+
+		return $this->db->update('curso', $data, array('id' => $this->id));
+	}
+
+
+
+
 }
