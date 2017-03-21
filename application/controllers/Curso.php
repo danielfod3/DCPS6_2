@@ -70,4 +70,51 @@ class Curso extends CI_Controller {
 
 
   }
+
+
+public function modificar($id = null, $modificacion = null){
+	 $this->load->model('Curso_model');
+
+	if($id != null) {
+
+	 $this->load->model('Curso_model');
+	 $curso = $this->Curso_model->obtener_curso($id);
+
+	 $data["curso"] = $curso;
+
+	 if($modificacion == NULL){
+	 	$this->load->view('modificar_curso',$data);
+	 }else{
+		 
+        $this->form_validation->set_rules('id', 'id', 'required');
+        $this->form_validation->set_rules('nombre', 'nombre', 'required');
+        $this->form_validation->set_rules('facultad', 'facultad', 'required');		
+			
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('modificar_curso',$data);
+		}
+		else
+		{
+          $value['id'] = $this->input->post('id');
+          $value['nombre'] = $this->input->post('nombre');
+          $value['facultad'] = $this->input->post('facultad');
+
+			//$this->Curso->construc($value);
+			$curse = new Curso_model ($value);
+			if ($curse->actualizar()){
+				$data["curso"] = $value;
+				$this->load->view('modificar_curso',$data);
+				echo "Modificado exitosamente";
+			}
+		}
+	 }
+
+ 	}
+	else {
+		redirect('/curso/listar');
+	 }
+
+
+ }
 }
