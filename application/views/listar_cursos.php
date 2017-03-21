@@ -33,6 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              <td><center><?= $nueva->nombre?></center></td>
              <td><center><?= $nueva->facultad?></center></td>
              <td><center><a href="<?php echo site_url("Matricula/index/"). $nueva->id ?>"><button type="button" name="button">Añadir</button></a></center></td>
+             <td><center><a href="<?php echo site_url("Curso/modificar/").$nueva->id?>"><button type="button" name="button">Modificar</button></a>
           </tr>
         <?php  } ?>
     </table>
