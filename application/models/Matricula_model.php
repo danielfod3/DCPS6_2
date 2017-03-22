@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Matricula_model extends CI_Model {
 
+	private $id;
 	private $nota_final;
     private $id_curso;
     private $id_estudiante;
@@ -26,6 +27,7 @@ class Matricula_model extends CI_Model {
 
 	public function __get($key) {
 		switch ($key) {
+			case 'id':
 			case 'nota_final':
             case 'id_curso':
             case 'id_estudiante':
@@ -56,6 +58,66 @@ class Matricula_model extends CI_Model {
 		}
 		return $result;
 	}
+
+
+
+	public function obtener_curso_por_estudiante() {
+
+		//$query = $this->db->get_where('matricula', ['id_estudiante' => $this->id_estudiante]);
+		$this->db->from('matricula')
+			->join('curso','matricula.id_curso = curso.id' )
+			->join('estudiante','matricula.id_estudiante = estudiante.id' )
+			->where('id_estudiante', $this->id_estudiante);
+			
+		$result = $this->db->get()->result();
+		var_dump($result);
+
+		if (empty($result)) {
+			return FALSE;
+		} else {
+			
+
+			/*$total_estudiante=[];
+			foreach($result as $resutado){
+			$total_estudiante[]=new Matricula_model($resutado);
+
+
+			}
+
+			var_dump($total_estudiante);
+			/*
+
+			/*
+			$this->id = $result[0]->id;
+			$this->nota_final = $result[0]->nota_final;
+			$this->id_curso = $result[0]->id_curso;
+			$this->id_estudiante = $result[0]->id_estudiante;
+			return $this;*/
+		}
+	}
+
+
+	public function obtener_cursos() {
+		$this->load->model('Curso_model');
+
+		$cursos = $this->Curso_model->obtener_curso_por_mtricula($this);
+		//var_dump($cursos);	
+		return $cursos;
+	}
+
+		public function obtener_estudiantes() {
+		$this->load->model('Estudiante_model');
+
+		$estudiantes = $this->Estudiante_model->obtener_estudiante_por_mtricula($this);
+		//var_dump($estudiantes);	
+		return $estudiantes;
+	}
+
+
+
+
+
+
 
 	// public function obtener_datos() {
 	//    $query = $this->db->get_where('matricula', ['id' => $this->id]);
