@@ -89,4 +89,19 @@ class Estudiante_model extends CI_Model {
 		}
 		return $res1;
 	}
+
+
+	public function obtener_estudiante_por_mtricula($matricula) {
+
+		$estudiantes= [];
+
+		$query = $this->db->get_where('estudiante', array('id' => $matricula->id_estudiante));
+
+		foreach ($query->result() as $key=>$estudiante) {
+			$estudiantes[$key] = new Estudiante_model($estudiante);
+		}
+		return $estudiantes;
+
+}
+
 }
