@@ -87,7 +87,21 @@ class Curso_model extends CI_Model {
 		return $this->db->update('curso', $data, array('id' => $this->id));
 	}
 
+	public function obtener_curso_por_mtricula($matricula) {
+
+		$cursos= [];
+
+		$query = $this->db->get_where('curso', array('id' => $matricula->id_curso));
+
+		foreach ($query->result() as $key=>$curso) {
+			$cursos[$key] = new Curso_model($curso);
+		}
+
+		return $cursos;
+
+		//var_dump($cursos);
 
 
 
+}
 }
