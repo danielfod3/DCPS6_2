@@ -70,30 +70,9 @@ class Matricula_model extends CI_Model {
 			->where('id_estudiante', $this->id_estudiante);
 			
 		$result = $this->db->get()->result();
-		var_dump($result);
+		//var_dump($result);
+		return $result;
 
-		if (empty($result)) {
-			return FALSE;
-		} else {
-			
-
-			/*$total_estudiante=[];
-			foreach($result as $resutado){
-			$total_estudiante[]=new Matricula_model($resutado);
-
-
-			}
-
-			var_dump($total_estudiante);
-			/*
-
-			/*
-			$this->id = $result[0]->id;
-			$this->nota_final = $result[0]->nota_final;
-			$this->id_curso = $result[0]->id_curso;
-			$this->id_estudiante = $result[0]->id_estudiante;
-			return $this;*/
-		}
 	}
 
 

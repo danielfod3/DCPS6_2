@@ -10,47 +10,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <body>
 	<table>
 			<tr>
-			   <th>ID_matricula</th>
-				<th>Nota_final</th>
-				<th>Id_curso</th>
-				<th>Id_estudiante</th>
+			  <th>ID ESTUDIANTE</th>
+				<th>NOMBRE </th>
+				<th>CURSOS</th>
 				
 			</tr>
+			<?php 
+			foreach ($total as $datos) { ?>
 			<tr>
-				<td><center><?= $matricula->id?></center></td>
-				<td><center><?= $matricula->nota_final?></center></td>
-				<td><center><?= $matricula->id_curso?></center></td>
-				<td><center><?= $matricula->id_estudiante?></center></td>
+			<td><center><?= $datos->id ?></center></td>
+			<td><center><?= $datos->nombre ?></center></td>
+			<td>
+			<table>
+			<tr>
+			  <th>ID CURSO</th>
+				<th>NOTA</th>
 			</tr>
 			<tr>
-				<th>id</th>
-				<th>nombre</th>
-				<th>facultad</th>
+			  <td><center><?= $datos->id_curso ?></center></td>
+			<td><center><?= $datos->nota_final ?></center></td>
 			</tr>
-
-                 <?php 
-				 //echo "<p><pre>".var_dump($cursos)."</pre></p>";
-				 foreach ($cursos as $curso) {?>
-            <tr>
-                 <td><center><?=$curso->id?></center></td>
-                 <td><center><?=$curso->nombre?></center></td>
-                 <td><center><?=$curso->facultad?></center></td>
-            </tr>
-				 <?php } ?>
-			<tr>
-				 <th>id</th>
-				 <th>nombre</th>
-                 <th>edad</th>
+			</table>
+			</td>
 			</tr>
-                 <?php 
-				 //echo "<p><pre>".var_dump($estudiantes)."</pre></p>";
-				 foreach ($estudiantes as $estudiante) {?>
-            <tr>
-                 <td><center><?=$estudiante->id?></center></td>
-                 <td><center><?=$estudiante->nombre?></center></td>
-                 <td><center><?=$estudiante->edad?></center></td>
-            </tr>
-				 <?php } ?>
+			<?php } ?>
+			
 	</table>
   </body>
 </html>
